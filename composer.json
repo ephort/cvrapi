@@ -1,0 +1,19 @@
+{
+    "name": "KristianI/cvrapi",
+    "description": "CVR API package",
+    "authors": [
+        {
+            "name": "Kristian Just Iversen",
+            "email": "kristian@justiversen.dk"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "Cvrapi\\": "src/Cvrapi" }
+    }
+}
