@@ -3,13 +3,24 @@
 class CvrapiTest extends PHPUnit_Framework_TestCase {
     
     /**
+     * Project not filled in
+     */
+    public function testProjectNotFilledIn()
+    {
+        $result = \Cvrapi\Cvrapi::get('29910251', 'dk');
+        
+        $this->assertTrue(property_exists($result, 'error'));
+        $this->assertTrue((string)$result->error === 'INVALID_UA');
+    }
+    
+    /**
      * Get company information by VAT as JSON
      */
     public function testGetCompanyByVatJson()
     {
         \Cvrapi\Config::$format = 'json';
         
-        $result = \Cvrapi\Cvrapi::get('29910251', 'dk');
+        $result = \Cvrapi\Cvrapi::get('29910251', 'dk', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -22,7 +33,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
     {
         \Cvrapi\Config::$format = 'xml';
         
-        $result = \Cvrapi\Cvrapi::get('29910251', 'dk');
+        $result = \Cvrapi\Cvrapi::get('29910251', 'dk', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -33,7 +44,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testGetCompanyByPNumber()
     {
-        $result = \Cvrapi\Cvrapi::get('1012697712', 'dk');
+        $result = \Cvrapi\Cvrapi::get('1012697712', 'dk', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -44,7 +55,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testGetCompanyByCompanyName()
     {
-        $result = \Cvrapi\Cvrapi::get('I/S Just Iversen', 'dk');
+        $result = \Cvrapi\Cvrapi::get('I/S Just Iversen', 'dk', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -55,7 +66,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testSearchOnlyVAT()
     {
-        $result = \Cvrapi\Cvrapi::request('29910251', 'dk', 'vat');
+        $result = \Cvrapi\Cvrapi::request('29910251', 'dk', 'vat', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -66,7 +77,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testSearchOnlyPNumber()
     {
-        $result = \Cvrapi\Cvrapi::request('1012697712', 'dk', 'produ');
+        $result = \Cvrapi\Cvrapi::request('1012697712', 'dk', 'produ', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -77,7 +88,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testSearchOnlyCompanyName()
     {
-        $result = \Cvrapi\Cvrapi::request('I/S Just Iversen', 'dk', 'name');
+        $result = \Cvrapi\Cvrapi::request('I/S Just Iversen', 'dk', 'name', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -88,7 +99,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testSearchOnlyPhone()
     {
-        $result = \Cvrapi\Cvrapi::request('61401169', 'dk', 'phone');
+        $result = \Cvrapi\Cvrapi::request('61401169', 'dk', 'phone', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -99,7 +110,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testIncorrectVat()
     {
-        $result = \Cvrapi\Cvrapi::get('29910251111111', 'dk');
+        $result = \Cvrapi\Cvrapi::get('29910251111111', 'dk', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'error'));
         $this->assertTrue((string)$result->error === 'NOT_FOUND');
@@ -112,7 +123,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testEmptyVat()
     {
-        $result = \Cvrapi\Cvrapi::request('xxxx', 'dk', 'vat');
+        $result = \Cvrapi\Cvrapi::request('xxxx', 'dk', 'vat', 'Unit Testing');
     }
     
     /**
@@ -122,7 +133,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testEmptySearch()
     {
-        $result = \Cvrapi\Cvrapi::get('', 'dk');
+        $result = \Cvrapi\Cvrapi::get('', 'dk', 'Unit Testing');
     }
     
     /**
@@ -131,7 +142,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testStrippedVat()
     {
-        $result = \Cvrapi\Cvrapi::request('xxxx29910251xxxx', 'dk', 'vat');
+        $result = \Cvrapi\Cvrapi::request('xxxx29910251xxxx', 'dk', 'vat', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -144,7 +155,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testMalformedVat()
     {
-        $result = \Cvrapi\Cvrapi::request('xxxx', 'dk', 'vat');
+        $result = \Cvrapi\Cvrapi::request('xxxx', 'dk', 'vat', 'Unit Testing');
     }
     
     /**
@@ -154,7 +165,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testMalformedCountryCode()
     {
-        $result = \Cvrapi\Cvrapi::request('29910251', 'ch');
+        $result = \Cvrapi\Cvrapi::request('29910251', 'ch', 'Unit Testing');
     }
     
 }
