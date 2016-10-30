@@ -13,13 +13,14 @@ class Cvrapi {
     /**
      * Get company by VAT, P-number or company name.
      * 
-     * @param mixed $search
-     * @param string $country
+     * @param  mixed  $search
+     * @param  string $country
+     * @param  string $project Optional. Description of your project.
      * @return object
      */
-    public static function get($search, $country)
+    public static function get($search, $country, $project = 'mit projekt')
     {
-        return self::request($search, $country, 'search');
+        return self::request($search, $country, 'search', $project);
     }
     
     /**
@@ -33,7 +34,7 @@ class Cvrapi {
      * @param  string $project Optional. Description of your project.
      * @return array|string    Array of data or XML string.
      */
-    public static function request($search, $country, $type = 'search', $project = 'Not supplied')
+    public static function request($search, $country, $type = 'search', $project = 'mit projekt')
     {
         
         // Validate search term
