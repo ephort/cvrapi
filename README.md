@@ -21,7 +21,7 @@ $result = \Cvrapi\Cvrapi::get('I/S Just Iversen', 'dk', 'Description of my proje
 // Get company by searching specifically in the VAT field
 $result = \Cvrapi\Cvrapi::request('29910251', 'dk', 'vat', 'Description of my project');
 
-// Get company by searching specifically in the P number field
+// Get company by searching specifically in the P-number field
 $result = \Cvrapi\Cvrapi::request('1012697712', 'dk', 'produ', 'Description of my project');
 
 // Get company by searching specifically in the company name field
@@ -30,3 +30,6 @@ $result = \Cvrapi\Cvrapi::request('I/S Just Iversen', 'dk', 'name', 'Description
 // Get company by searching specifically in the phone number field
 $result = \Cvrapi\Cvrapi::request('61401169', 'dk', 'phone', 'Description of my project');
 ```
+
+## License
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
