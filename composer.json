@@ -15,6 +15,8 @@
         "phpunit/phpunit": "dev-master"
     },
     "autoload": {
-        "psr-4": { "Cvrapi\\": "src/Cvrapi" }
+        "psr-4": {
+            "Cvrapi\\": "src/Cvrapi"
+        }
     }
 }
