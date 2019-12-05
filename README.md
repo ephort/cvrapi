@@ -1,9 +1,9 @@
+![Packagist Downloads](https://img.shields.io/packagist/dt/KristianI/cvrapi)
+![Code size](https://img.shields.io/github/languages/code-size/JustIversen/cvrapi)
+
 # CVR API
 
 Easily look up companies in the danish CVR database using the CVRAPI.dk API.
-
-![Packagist Downloads](https://img.shields.io/packagist/dt/KristianI/cvrapi)
-![Code size](https://img.shields.io/github/languages/code-size/JustIversen/cvrapi)
 
 ## Installation
 
