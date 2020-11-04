@@ -5,10 +5,10 @@ namespace Cvrapi;
 /**
  * Validate input
  *
- * @author Kristian Just Iversen
+ * @author Kristian Just
  */
-class Validate {
-    
+class Validate
+{
     /**
      * Validate int (e.g. VAT or phonenumber)
      * 
@@ -22,7 +22,7 @@ class Validate {
 
         return $validated;
     }
-    
+
     /**
      * Validate search term
      * 
@@ -35,7 +35,7 @@ class Validate {
             throw new \Exception('Invalid search term.');
         }
     }
-    
+
     /**
      * Validate country
      * 
@@ -44,9 +44,8 @@ class Validate {
      */
     public static function country($input)
     {
-        if(!in_array($input, Config::$countriesAvailable)) {
+        if (!in_array($input, Config::$countriesAvailable)) {
             throw new \Exception('Invalid country code.');
         }
     }
 }
-

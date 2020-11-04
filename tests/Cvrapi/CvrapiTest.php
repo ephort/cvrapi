@@ -1,6 +1,6 @@
 <?php
 
-class CvrapiTest extends PHPUnit_Framework_TestCase {
+class CvrapiTest extends \PHPUnit\Framework\TestCase {
     
     /**
      * Project not filled in
@@ -55,8 +55,8 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testGetCompanyByCompanyName()
     {
-        $result = \Cvrapi\Cvrapi::get('I/S Just Iversen', 'dk', 'Unit Testing');
-        
+        $result = \Cvrapi\Cvrapi::get('Just Iversen', 'dk', 'Unit Testing');
+
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
     }
@@ -88,7 +88,7 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
      */
     public function testSearchOnlyCompanyName()
     {
-        $result = \Cvrapi\Cvrapi::request('I/S Just Iversen', 'dk', 'name', 'Unit Testing');
+        $result = \Cvrapi\Cvrapi::request('Just Iversen', 'dk', 'name', 'Unit Testing');
         
         $this->assertTrue(property_exists($result, 'vat'));
         $this->assertTrue((int)$result->vat === 29910251);
@@ -118,21 +118,21 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
     
     /**
      * Empty VAT number
-     * 
-     * @expectedException Exception
      */
     public function testEmptyVat()
     {
+        $this->expectException(Exception::class);
+
         $result = \Cvrapi\Cvrapi::request('xxxx', 'dk', 'vat', 'Unit Testing');
     }
     
     /**
      * Empty search term
-     * 
-     * @expectedException Exception
      */
     public function testEmptySearch()
     {
+        $this->expectException(Exception::class);
+
         $result = \Cvrapi\Cvrapi::get('', 'dk', 'Unit Testing');
     }
     
@@ -150,21 +150,21 @@ class CvrapiTest extends PHPUnit_Framework_TestCase {
     
     /**
      * Malformed VAT number
-     * 
-     * @expectedException Exception
      */
     public function testMalformedVat()
     {
+        $this->expectException(Exception::class);
+
         $result = \Cvrapi\Cvrapi::request('xxxx', 'dk', 'vat', 'Unit Testing');
     }
     
     /**
      * Not available country code
-     * 
-     * @expectedException Exception
      */
     public function testMalformedCountryCode()
     {
+        $this->expectException(Exception::class);
+
         $result = \Cvrapi\Cvrapi::request('29910251', 'ch', 'Unit Testing');
     }
     

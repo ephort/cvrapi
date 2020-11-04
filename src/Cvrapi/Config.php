@@ -5,10 +5,10 @@ namespace Cvrapi;
 /**
  * Config
  * 
- * @author Kristian Just Iversen
+ * @author Kristian Just
  */
-class Config {
-   
+class Config
+{   
     /**
      * API version
      * 
@@ -36,5 +36,4 @@ class Config {
      * @var array
      */
     static $countriesAvailable = array('dk', 'no');
-    
 }

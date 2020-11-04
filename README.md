@@ -32,6 +32,12 @@ $result = \Cvrapi\Cvrapi::request('I/S Just Iversen', 'dk', 'name', 'Description
 
 // Get company by searching specifically in the phone number field
 $result = \Cvrapi\Cvrapi::request('61401169', 'dk', 'phone', 'Description of my project');
+
+// Get company using 'get' with token
+$result = \Cvrapi\Cvrapi::get('29910251', 'dk', 'Description of my project', 'secret-token');
+
+// Get company using 'request' with token
+$result = \Cvrapi\Cvrapi::request('61401169', 'dk', 'phone', 'Description of my project', 'secret-token');
 ```
 
 ## License
