@@ -1,5 +1,6 @@
 ![Packagist Downloads](https://img.shields.io/packagist/dt/KristianI/cvrapi)
 ![Code size](https://img.shields.io/github/languages/code-size/JustIversen/cvrapi)
+![Build Status](https://img.shields.io/github/workflow/status/JustIversen/cvrapi/PHP%20Composer)
 
 # CVR API
 
