@@ -6,6 +6,8 @@
 
 Easily look up companies in the danish CVR database using the CVRAPI.dk API.
 
+Supports tokens.
+
 ## Installation
 
 `composer require kristiani/cvrapi`
