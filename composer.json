@@ -18,5 +18,8 @@
         "psr-4": {
             "Cvrapi\\": "src/Cvrapi"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
